@@ -4,10 +4,9 @@
 
 **Plataforma de Educação a Distância com perfis de aluno, professor e administrador.**
 
-![Node.js](https://img.shields.io/badge/Node.js-18+-6d28d9?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Express](https://img.shields.io/badge/Express-4-4c1d95?style=for-the-badge&logo=express&logoColor=white)
-![SQLite](https://img.shields.io/badge/SQLite-banco-6d28d9?style=for-the-badge&logo=sqlite&logoColor=white)
-![EJS](https://img.shields.io/badge/EJS-views-4c1d95?style=for-the-badge&logo=ejs&logoColor=white)
+Camilly Felipe dos Santos
+Lara da Silva Dias
+
 
 </div>
 
