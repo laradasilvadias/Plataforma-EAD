@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+<article>
+  <header>
+    <p class="tag"><%= course.category %></p>
+    <h1><%= course.title %></h1>
+    <p><%= course.description %></p>
+    <p class="text-muted">Professor: <%= course.teacher_name %></p>
+  </header>
+
+  <p class="actions">
+    <% if (isOwner) { %>
+      <a class="btn" href="/professor/cursos/<%= course.id %>">Gerenciar curso</a>
+    <% } else if (enrolled) { %>
+      <a class="btn" href="/aluno/cursos/<%= course.id %>/aulas">Continuar curso</a>
+    <% } else if (user && user.role === 'aluno') { %>
+      <form action="/aluno/cursos/<%= course.id %>/inscricao" method="post"><button class="btn" type="submit">Inscrever-se</button></form>
+    <% } else if (!user) { %>
+      <a class="btn" href="/login">Entre para se inscrever</a>
+    <% } %>
+  </p>
+
+  <section aria-labelledby="conteudo-curso">
+    <h2 id="conteudo-curso">Conteúdo do curso</h2>
+    <ol class="plain-list">
+      <% lessons.forEach((lesson) => { %><li class="card"><%= lesson.title %></li><% }) %>
+    </ol>
+    <% if (!lessons.length) { %><p class="text-muted">Nenhuma aula cadastrada ainda.</p><% } %>
+  </section>
+</article>
+<%- include('../partials/footer') %>

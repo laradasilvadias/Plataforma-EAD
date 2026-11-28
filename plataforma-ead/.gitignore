@@ -1,0 +1,21 @@
+# Dependências
+node_modules/
+
+# Banco de dados local (criado automaticamente ao rodar o projeto)
+ead.db
+ead.db-journal
+ead.db-wal
+ead.db-shm
+
+# Variáveis de ambiente e segredos
+.env
+
+# Logs
+*.log
+npm-debug.log*
+
+# Arquivos do sistema e do editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

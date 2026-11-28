@@ -1,0 +1,12 @@
+<%- include('../partials/header') %>
+<h1>Certificados</h1>
+<% if (!certified.length) { %>
+  <p>Conclua todas as aulas e acerte <%= minScore %>% ou mais da prova para liberar seu certificado.</p>
+<% } else { %>
+  <ul class="plain-list">
+    <% certified.forEach((c) => { %>
+      <li class="card list-row"><span><%= c.title %></span><a class="btn btn--small" href="/aluno/certificados/<%= c.id %>">Ver certificado</a></li>
+    <% }) %>
+  </ul>
+<% } %>
+<%- include('../partials/footer') %>

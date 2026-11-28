@@ -1,0 +1,41 @@
+/* Variáveis, reset e tipografia */
+:root {
+  --color-bg: #ffffff;
+  --color-lavender: #f5f0ff;
+  --color-ink: #2e1065;
+  --color-muted: #6b5b8f;
+  --color-line: #e4d9f7;
+  --color-brand: #6d28d9;
+  --color-brand-dark: #4c1d95;
+  --color-focus: #a78bfa;
+  --color-surface: #ffffff;
+  --color-danger: #b3261e;
+  --color-success: #1f6b3a;
+  --radius: 12px;
+  --ease: cubic-bezier(.2, .8, .2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font: 400 1rem/1.65 "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+h1, h2, h3 { font-weight: 700; line-height: 1.2; margin: 0 0 .5em; }
+h1 { font-size: clamp(1.7rem, 4vw, 2.6rem); font-weight: 800; }
+h2 { font-size: 1.45rem; margin-top: 2.25rem; }
+h3 { font-size: 1.1rem; }
+
+a { color: var(--color-brand); font-weight: 600; }
+:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 2px; }
+
+.text-muted { color: var(--color-muted); font-size: .9rem; }
+.plain-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

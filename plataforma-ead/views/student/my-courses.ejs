@@ -1,0 +1,15 @@
+<%- include('../partials/header') %>
+<h1>Minhas aulas</h1>
+<section class="grid" aria-label="Cursos em andamento">
+  <% courses.forEach((c) => { %>
+    <article class="card">
+      <h2 class="card__title"><%= c.title %></h2>
+      <p class="text-muted">Prof. <%= c.teacher_name %></p>
+      <progress value="<%= c.lesson_done %>" max="<%= c.lesson_total || 1 %>"></progress>
+      <p class="text-muted"><%= c.lesson_done %> de <%= c.lesson_total %> aulas (<%= c.percent %>%)</p>
+      <a class="btn" href="/aluno/cursos/<%= c.id %>/aulas">Abrir curso</a>
+    </article>
+  <% }) %>
+</section>
+<% if (!courses.length) { %><p>Você ainda não se inscreveu em nenhum curso. <a href="/cursos">Ver catálogo</a></p><% } %>
+<%- include('../partials/footer') %>

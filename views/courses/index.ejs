@@ -1,0 +1,11 @@
+<%- include('../partials/header') %>
+<h1>Cursos</h1>
+<form class="search" action="/cursos" method="get" role="search">
+  <label>Buscar curso <input type="search" name="q" value="<%= search %>" placeholder="Nome ou categoria"></label>
+  <button class="btn" type="submit">Buscar</button>
+</form>
+<section class="grid" aria-label="Lista de cursos">
+  <% courses.forEach((course) => { %><%- include('../partials/course-card', { course }) %><% }) %>
+  <% if (!courses.length) { %><p>Nenhum curso encontrado.</p><% } %>
+</section>
+<%- include('../partials/footer') %>

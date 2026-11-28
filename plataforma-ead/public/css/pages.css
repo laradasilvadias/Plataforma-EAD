@@ -1,0 +1,21 @@
+/* Estilos específicos de páginas */
+.hero { max-width: 44rem; margin: 0 auto; padding: 2.5rem 0 1.5rem; }
+.hero p { font-size: 1.1rem; color: var(--color-muted); }
+
+.details { display: grid; grid-template-columns: max-content 1fr; gap: .6rem 1.5rem; max-width: 420px; margin: 0 auto; text-align: left; }
+.details dt { font-weight: 700; color: var(--color-brand); }
+.details dd { margin: 0; }
+
+.lesson-layout { display: grid; grid-template-columns: 1fr 280px; gap: 1.5rem; align-items: start; }
+.video { width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: var(--radius); background: #000; margin-bottom: 1rem; }
+.lesson-list { text-align: left; }
+.lesson-list h2 { font-size: 1.05rem; margin-top: 0; text-align: center; }
+.lesson-list a { display: block; padding: .6rem .85rem; border-radius: 10px; text-decoration: none; color: var(--color-ink); font-weight: 500; border: 1px solid transparent; }
+.lesson-list a:hover { background: var(--color-lavender); }
+.lesson-list a[aria-current="page"] { background: var(--color-lavender); border-color: var(--color-brand); color: var(--color-brand-dark); font-weight: 700; }
+
+.certificate { border: 6px double var(--color-brand); background: #fff; padding: 3rem 1.5rem; margin: 1.25rem 0; }
+.certificate h1 { color: var(--color-brand); }
+
+@media (max-width: 760px) { .lesson-layout { grid-template-columns: 1fr; } }
+@media print { .site-header, .site-footer, .no-print { display: none; } }

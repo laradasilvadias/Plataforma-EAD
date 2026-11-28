@@ -1,0 +1,9 @@
+<%- include('../partials/header') %>
+<h1>Criar conta de aluno</h1>
+<form class="form" action="/cadastro" method="post">
+  <label>Nome <input type="text" name="name" required autocomplete="name"></label>
+  <label>E-mail <input type="email" name="email" required autocomplete="email"></label>
+  <label>Senha (mínimo 6 caracteres) <input type="password" name="password" minlength="6" required autocomplete="new-password"></label>
+  <button class="btn" type="submit">Cadastrar</button>
+</form>
+<%- include('../partials/footer') %>

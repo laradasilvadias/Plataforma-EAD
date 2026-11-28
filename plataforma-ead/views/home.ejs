@@ -1,0 +1,17 @@
+<%- include('partials/header') %>
+<section class="hero" aria-labelledby="hero-titulo">
+  <h1 id="hero-titulo">Aprenda no seu ritmo, onde estiver.</h1>
+  <p>Assista às videoaulas, baixe os materiais, faça as atividades e conquiste seu certificado.</p>
+  <p class="actions">
+    <a class="btn" href="/cursos">Explorar cursos</a>
+    <% if (!user) { %><a class="btn btn--outline" href="/cadastro">Criar conta grátis</a><% } %>
+  </p>
+</section>
+
+<section aria-labelledby="recentes">
+  <h2 id="recentes">Cursos recentes</h2>
+  <div class="grid">
+    <% courses.forEach((course) => { %><%- include('partials/course-card', { course }) %><% }) %>
+  </div>
+</section>
+<%- include('partials/footer') %>

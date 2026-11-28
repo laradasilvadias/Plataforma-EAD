@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title %> | Trilha EAD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Navegação principal">
+      <a class="site-nav__logo" href="/">Trilha EAD</a>
+      <ul class="site-nav__list">
+        <li><a href="/">Início</a></li>
+        <li><a href="/cursos">Cursos</a></li>
+        <% if (!user) { %>
+          <li><a href="/login">Entrar</a></li>
+          <li><a href="/cadastro">Cadastrar</a></li>
+        <% } else { %>
+          <li><a href="/painel">Painel</a></li>
+          <% if (user.role === 'aluno') { %>
+            <li><a href="/aluno/cursos">Minhas aulas</a></li>
+            <li><a href="/aluno/certificados">Certificados</a></li>
+          <% } %>
+          <li><a href="/perfil">Perfil</a></li>
+          <li>
+            <form action="/logout" method="post"><button class="link-button" type="submit">Sair</button></form>
+          </li>
+        <% } %>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="conteudo" class="container">
+    <% if (flash) { %>
+      <p class="alert alert--<%= flash.type %>" role="alert"><%= flash.message %></p>
+    <% } %>

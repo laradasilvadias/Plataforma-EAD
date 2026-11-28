@@ -1,0 +1,10 @@
+<%- include('../partials/header') %>
+<article class="certificate">
+  <p>Certificamos que</p>
+  <h1><%= user.name %></h1>
+  <p>concluiu com êxito o curso</p>
+  <h2><%= course.title %></h2>
+  <p class="text-muted">Emitido em <time><%= date %></time></p>
+</article>
+<p class="no-print"><button class="btn" type="button" onclick="window.print()">Imprimir / salvar em PDF</button></p>
+<%- include('../partials/footer') %>

@@ -1,0 +1,76 @@
+<%- include('../partials/header') %>
+<h1>Gerenciar: <%= course.title %></h1>
+
+<section aria-labelledby="dados">
+  <h2 id="dados">Dados do curso</h2>
+  <form class="form" action="/professor/cursos/<%= course.id %>" method="post">
+    <label>Título <input type="text" name="title" value="<%= course.title %>" required></label>
+    <label>Categoria <input type="text" name="category" value="<%= course.category %>"></label>
+    <label>Descrição <textarea name="description" rows="3"><%= course.description %></textarea></label>
+    <button class="btn" type="submit">Salvar alterações</button>
+  </form>
+  <form action="/professor/cursos/<%= course.id %>/excluir" method="post" onsubmit="return confirm('Excluir este curso?')">
+    <button class="btn btn--danger" type="submit">Excluir curso</button>
+  </form>
+</section>
+
+<section aria-labelledby="aulas">
+  <h2 id="aulas">Aulas</h2>
+  <table>
+    <caption class="visually-hidden">Aulas do curso</caption>
+    <thead><tr><th scope="col">Título</th><th scope="col">Ações</th></tr></thead>
+    <tbody>
+      <% lessons.forEach((l) => { %>
+        <tr><td><%= l.title %></td>
+          <td><form action="/professor/aulas/<%= l.id %>/excluir" method="post"><button class="btn btn--danger btn--small" type="submit">Excluir</button></form></td></tr>
+      <% }) %>
+      <% if (!lessons.length) { %><tr><td colspan="2">Nenhuma aula cadastrada.</td></tr><% } %>
+    </tbody>
+  </table>
+  <form class="form" action="/professor/cursos/<%= course.id %>/aulas" method="post">
+    <label>Título da aula <input type="text" name="title" required></label>
+    <label>Link do vídeo (YouTube) <input type="url" name="video_url"></label>
+    <label>Link do material (PDF) <input type="url" name="material_url"></label>
+    <button class="btn" type="submit">Adicionar aula</button>
+  </form>
+</section>
+
+<section aria-labelledby="atividades">
+  <h2 id="atividades">Atividades</h2>
+  <table>
+    <caption class="visually-hidden">Perguntas do curso</caption>
+    <thead><tr><th scope="col">Pergunta</th><th scope="col">Ações</th></tr></thead>
+    <tbody>
+      <% questions.forEach((q) => { %>
+        <tr><td><%= q.text %></td>
+          <td><form action="/professor/perguntas/<%= q.id %>/excluir" method="post"><button class="btn btn--danger btn--small" type="submit">Excluir</button></form></td></tr>
+      <% }) %>
+      <% if (!questions.length) { %><tr><td colspan="2">Nenhuma pergunta cadastrada.</td></tr><% } %>
+    </tbody>
+  </table>
+  <form class="form" action="/professor/cursos/<%= course.id %>/perguntas" method="post">
+    <label>Pergunta <input type="text" name="text" required></label>
+    <% for (let i = 0; i < 4; i++) { %>
+      <label>Alternativa <%= i + 1 %> <input type="text" name="option<%= i %>" <%= i < 2 ? 'required' : '' %>></label>
+    <% } %>
+    <label>Alternativa correta
+      <select name="correct"><% for (let i = 0; i < 4; i++) { %><option value="<%= i %>"><%= i + 1 %></option><% } %></select>
+    </label>
+    <button class="btn" type="submit">Adicionar pergunta</button>
+  </form>
+</section>
+
+<section aria-labelledby="alunos">
+  <h2 id="alunos">Alunos inscritos</h2>
+  <table>
+    <caption class="visually-hidden">Alunos do curso</caption>
+    <thead><tr><th scope="col">Nome</th><th scope="col">E-mail</th><th scope="col">Aulas</th><th scope="col">Melhor nota</th></tr></thead>
+    <tbody>
+      <% students.forEach((s) => { %>
+        <tr><td><%= s.name %></td><td><%= s.email %></td><td><%= s.lesson_done %>/<%= s.lesson_total %></td><td><%= s.best_score === null ? '-' : s.best_score + '%' %></td></tr>
+      <% }) %>
+      <% if (!students.length) { %><tr><td colspan="4">Nenhum aluno inscrito.</td></tr><% } %>
+    </tbody>
+  </table>
+</section>
+<%- include('../partials/footer') %>

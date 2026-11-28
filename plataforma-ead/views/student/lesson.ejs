@@ -1,0 +1,35 @@
+<%- include('../partials/header') %>
+<p><a href="/cursos/<%= course.id %>"><%= course.title %></a></p>
+<div class="lesson-layout">
+  <article>
+    <h1><%= lesson.title %></h1>
+    <% if (lesson.video_url) { %>
+      <iframe class="video" src="<%= lesson.video_url %>" title="<%= lesson.title %>" allowfullscreen></iframe>
+    <% } else { %><p class="text-muted">Esta aula não tem vídeo.</p><% } %>
+    <p class="actions">
+      <% if (lesson.material_url) { %>
+        <a class="btn btn--outline" href="<%= lesson.material_url %>" target="_blank" rel="noopener">Baixar material</a>
+      <% } %>
+      <% if (done.includes(lesson.id)) { %>
+        <span class="tag">Aula concluída</span>
+      <% } else { %>
+        <form action="/aluno/aulas/<%= lesson.id %>/concluir" method="post"><button class="btn" type="submit">Marcar como concluída</button></form>
+      <% } %>
+    </p>
+  </article>
+
+  <nav class="lesson-list" aria-label="Aulas do curso">
+    <h2>Aulas</h2>
+    <ul class="plain-list">
+      <% lessons.forEach((l) => { %>
+        <li>
+          <a href="/aluno/cursos/<%= course.id %>/aulas/<%= l.id %>" <%- l.id === lesson.id ? 'aria-current="page"' : '' %>>
+            <%= done.includes(l.id) ? '✓ ' : '' %><%= l.title %>
+          </a>
+        </li>
+      <% }) %>
+      <li><a href="/aluno/cursos/<%= course.id %>/atividade"><strong>Atividades e prova</strong></a></li>
+    </ul>
+  </nav>
+</div>
+<%- include('../partials/footer') %>

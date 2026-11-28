@@ -1,0 +1,7 @@
+<article class="card">
+  <p class="tag"><%= course.category %></p>
+  <h3 class="card__title"><%= course.title %></h3>
+  <p class="text-muted"><%= (course.description || '').slice(0, 110) %></p>
+  <p class="text-muted">Prof. <%= course.teacher_name %> · <%= course.lesson_count %> aulas · <%= course.student_count %> alunos</p>
+  <a class="btn" href="/cursos/<%= course.id %>">Ver curso</a>
+</article>

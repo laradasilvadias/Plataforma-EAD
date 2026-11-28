@@ -1,0 +1,28 @@
+<%- include('../partials/header') %>
+<h1>Atividades: <%= course.title %></h1>
+<% if (best !== null && best !== undefined) { %><p class="text-muted">Sua melhor nota: <%= best %>%</p><% } %>
+
+<% if (result) { %>
+  <p class="alert alert--<%= result.approved ? 'success' : 'error' %>" role="status">
+    Você acertou <%= result.score %> de <%= result.total %> (<%= result.percent %>%).
+    <%= result.approved ? 'Aprovado!' : 'Nota mínima para o certificado: 60%. Tente novamente.' %>
+  </p>
+<% } %>
+
+<% if (!questions.length) { %>
+  <p>Este curso ainda não tem atividades.</p>
+<% } else { %>
+  <form action="/aluno/cursos/<%= course.id %>/atividade" method="post">
+    <% questions.forEach((q, i) => { %>
+      <fieldset class="card question">
+        <legend><%= i + 1 %>. <%= q.text %></legend>
+        <% q.options.forEach((option, j) => { %>
+          <label class="option"><input type="radio" name="q<%= q.id %>" value="<%= j %>" required> <%= option %></label>
+        <% }) %>
+      </fieldset>
+    <% }) %>
+    <button class="btn" type="submit">Enviar respostas</button>
+  </form>
+<% } %>
+<p><a href="/aluno/cursos/<%= course.id %>/aulas">Voltar às aulas</a></p>
+<%- include('../partials/footer') %>

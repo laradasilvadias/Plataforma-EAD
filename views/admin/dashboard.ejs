@@ -1,0 +1,62 @@
+<%- include('../partials/header') %>
+<h1>Painel do administrador</h1>
+
+<section class="stats" aria-label="Estatísticas da plataforma">
+  <% Object.entries(stats).forEach(([label, value]) => { %>
+    <p class="card stat"><strong><%= value %></strong> <%= label %></p>
+  <% }) %>
+</section>
+
+<section aria-labelledby="usuarios">
+  <h2 id="usuarios">Usuários</h2>
+  <table>
+    <caption class="visually-hidden">Usuários cadastrados</caption>
+    <thead><tr><th scope="col">Nome</th><th scope="col">E-mail</th><th scope="col">Perfil</th><th scope="col">Ações</th></tr></thead>
+    <tbody>
+      <% users.forEach((u) => { %>
+        <tr>
+          <td><%= u.name %></td>
+          <td><%= u.email %></td>
+          <td>
+            <form class="inline-form" action="/admin/usuarios/<%= u.id %>/perfil" method="post">
+              <select name="role" aria-label="Perfil de <%= u.name %>">
+                <% ['aluno', 'professor', 'admin'].forEach((r) => { %><option <%= r === u.role ? 'selected' : '' %>><%= r %></option><% }) %>
+              </select>
+              <button class="btn btn--small" type="submit">Salvar</button>
+            </form>
+          </td>
+          <td>
+            <form action="/admin/usuarios/<%= u.id %>/excluir" method="post" onsubmit="return confirm('Excluir este usuário?')">
+              <button class="btn btn--danger btn--small" type="submit">Excluir</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+
+<section aria-labelledby="novo-usuario">
+  <h2 id="novo-usuario">Cadastrar usuário</h2>
+  <form class="form" action="/admin/usuarios" method="post">
+    <label>Nome <input type="text" name="name" required></label>
+    <label>E-mail <input type="email" name="email" required></label>
+    <label>Senha <input type="password" name="password" minlength="6" required></label>
+    <label>Perfil <select name="role"><option>aluno</option><option>professor</option><option>admin</option></select></label>
+    <button class="btn" type="submit">Criar usuário</button>
+  </form>
+</section>
+
+<section aria-labelledby="cursos-admin">
+  <h2 id="cursos-admin">Cursos</h2>
+  <table>
+    <caption class="visually-hidden">Todos os cursos</caption>
+    <thead><tr><th scope="col">Curso</th><th scope="col">Professor</th><th scope="col">Ações</th></tr></thead>
+    <tbody>
+      <% courses.forEach((c) => { %>
+        <tr><td><%= c.title %></td><td><%= c.teacher_name %></td><td><a href="/professor/cursos/<%= c.id %>">Gerenciar</a></td></tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+<%- include('../partials/footer') %>

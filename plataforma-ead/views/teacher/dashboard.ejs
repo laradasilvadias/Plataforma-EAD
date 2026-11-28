@@ -1,0 +1,24 @@
+<%- include('../partials/header') %>
+<h1>Painel do professor</h1>
+<section aria-labelledby="meus-cursos">
+  <h2 id="meus-cursos">Meus cursos</h2>
+  <div class="grid">
+    <% courses.forEach((c) => { %>
+      <article class="card">
+        <h3 class="card__title"><%= c.title %></h3>
+        <p class="text-muted"><%= c.lesson_count %> aulas · <%= c.student_count %> alunos</p>
+        <a class="btn" href="/professor/cursos/<%= c.id %>">Gerenciar</a>
+      </article>
+    <% }) %>
+  </div>
+</section>
+<section aria-labelledby="novo-curso">
+  <h2 id="novo-curso">Novo curso</h2>
+  <form class="form" action="/professor/cursos" method="post">
+    <label>Título <input type="text" name="title" required></label>
+    <label>Categoria <input type="text" name="category"></label>
+    <label>Descrição <textarea name="description" rows="3"></textarea></label>
+    <button class="btn" type="submit">Criar curso</button>
+  </form>
+</section>
+<%- include('../partials/footer') %>

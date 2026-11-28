@@ -1,0 +1,12 @@
+<%- include('../partials/header') %>
+<h1>Olá, <%= user.name %></h1>
+<section class="stats" aria-label="Resumo">
+  <p class="card stat"><strong><%= stats.courses %></strong> cursos inscritos</p>
+  <p class="card stat"><strong><%= stats.percent %>%</strong> progresso geral</p>
+  <p class="card stat"><strong><%= stats.certificates %></strong> certificados</p>
+</section>
+<p class="actions">
+  <a class="btn" href="/cursos">Buscar mais cursos</a>
+  <a class="btn btn--outline" href="/aluno/cursos">Ver minhas aulas</a>
+</p>
+<%- include('../partials/footer') %>
